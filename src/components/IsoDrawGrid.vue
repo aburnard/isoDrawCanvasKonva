@@ -1,19 +1,20 @@
 <template>
-  <div id="IsoGrid">
-    <v-stage ref="stage" :config="configKonva">
+  <div id="IsoDrawGrid">
+    <v-stage ref="stage" :draggable="grabber" :config="configKonva">
       <v-layer ref="layer">
         <v-regular-polygon
           @click="handleClick"
+          @tap="handleClick"
           v-for="item in list"
           :key="item.id"
           :config="{
-            x: item.x,
-            y: item.y,
+            x: item.x * recieveRadiusRatio.ratio,
+            y: item.y * recieveRadiusRatio.ratio,
            
             id: item.id,
             
             sides:3,
-            radius:100,
+            radius:100 * recieveRadiusRatio.ratio,
             fill:item.fill,
             stroke: 'yellow',
             rotation: item.rotation
@@ -26,10 +27,16 @@
 </template>
 
 <script>
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = window.innerWidth * 3;
+const height = window.innerHeight * 1.5;
 export default {
-  name: "IsoGrid",
+  name: "IsoDrawGrid",
+  props: ["radiusRatio", "grabber"],
+  computed: {
+    recieveRadiusRatio() {
+      return { ratio: this.radiusRatio * 0.01 };
+    }
+  },
   data() {
     return {
       isActive: true,
@@ -37,6 +44,8 @@ export default {
       list: [],
       dragItemId: null,
       clickItemId: null,
+      ratio: 0.3,
+
       configKonva: {
         width: width,
         height: height,
@@ -44,6 +53,7 @@ export default {
       }
     };
   },
+
   methods: {
     handleClick(e) {
       const clickItemId = e.target.id();
@@ -63,13 +73,13 @@ export default {
     for (let hexRow = 0; hexRow < 30; hexRow++) {
       for (let n = 0; n < 30; n++) {
         this.list.push({
-          id: Math.round(Math.random() * 100000).toString(),
+          id: Math.round(Math.random() * 10000000).toString(),
           x: n * 170 + (hexRow % 2) * 85,
           fill: "blue",
           y: 150 * hexRow
         });
         this.list.push({
-          id: Math.round(Math.random() * 100000).toString(),
+          id: Math.round(Math.random() * 10000000).toString(),
           rotation: 180,
           x: n * 170 + (hexRow % 2) * 85,
           fill: "blue",

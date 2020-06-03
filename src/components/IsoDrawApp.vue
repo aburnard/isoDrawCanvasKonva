@@ -9,16 +9,16 @@
           <b-switch v-model="grabber">Pin Canvas</b-switch>
         </div>
       </div>
-      <IsoGrid :radiusRatio="ratio" :grabber="grabber"></IsoGrid>
+      <IsoDrawGrid :radiusRatio="ratio" :grabber="grabber"></IsoDrawGrid>
     </section>
   </div>
 </template>
 
 <script>
-import IsoGrid from "./IsoGrid.vue";
+import IsoDrawGrid from "./IsoDrawGrid.vue";
 
 export default {
-  name: "HelloWorld",
+  name: "IsoDrawApp",
   data() {
     return {
       ratio: 30,
@@ -38,7 +38,7 @@ export default {
   },
 
   components: {
-    IsoGrid
+    IsoDrawGrid
   }
 };
 </script>
