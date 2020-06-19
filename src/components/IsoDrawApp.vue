@@ -24,9 +24,7 @@ export default {
       ratio: 30,
       grabber: true,
       isActive: true,
-      isImageModalActive: false,
-      ispicPixelAppActive: false,
-      isCardModalActive: false,
+
       imageData: ""
     };
   },
