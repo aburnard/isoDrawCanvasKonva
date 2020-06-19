@@ -29,12 +29,6 @@ export default {
     };
   },
 
-  methods: {
-    toggleGrabber() {
-      this.grabber = !this.grabber;
-    }
-  },
-
   components: {
     IsoDrawGrid
   }
