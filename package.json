@@ -11,7 +11,8 @@
     "buefy": "^0.8.6",
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
-    "vue-konva": "^2.0.11"
+    "vue-konva": "^2.0.11",
+    "vue-swatches": "^2.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",

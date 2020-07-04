@@ -3,19 +3,37 @@
     <section>
       <div class="columns is-mobile">
         <div class="column is-mobile">
-          <b-numberinput controls-position="compact" v-model="ratio" step="5" min="15" max="80"></b-numberinput>
+          <b-numberinput
+            controls-position="compact"
+            v-model="ratio"
+            step="5"
+            min="15"
+            max="80"
+          ></b-numberinput>
         </div>
         <div class="column is-mobile">
           <b-switch v-model="grabber">Pin Canvas</b-switch>
         </div>
+        <div class="column is-mobile">
+          <div>
+            <v-swatches v-model="color" swatches="text-advanced"></v-swatches>
+          </div>
+        </div>
       </div>
-      <IsoDrawGrid :radiusRatio="ratio" :grabber="grabber"></IsoDrawGrid>
+
+      <IsoDrawGrid
+        :radiusRatio="ratio"
+        :grabber="grabber"
+        :pickedColor="color"
+      ></IsoDrawGrid>
     </section>
   </div>
 </template>
 
 <script>
+import VSwatches from "vue-swatches";
 import IsoDrawGrid from "./IsoDrawGrid.vue";
+import "vue-swatches/dist/vue-swatches.css";
 
 export default {
   name: "IsoDrawApp",
@@ -25,16 +43,17 @@ export default {
       grabber: true,
       isActive: true,
 
-      imageData: ""
+      imageData: "",
+      color: "#1CA085",
     };
   },
 
   components: {
-    IsoDrawGrid
-  }
+    IsoDrawGrid,
+    VSwatches,
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
