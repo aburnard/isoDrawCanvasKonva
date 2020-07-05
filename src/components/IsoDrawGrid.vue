@@ -16,7 +16,7 @@
             sides: 3,
             radius: 100 * recieveRadiusRatio.ratio,
             fill: item.fill,
-            stroke: 'yellow',
+            stroke: visibleGrid,
             rotation: item.rotation,
           }"
         ></v-regular-polygon>
@@ -30,11 +30,21 @@ const width = window.innerWidth * 3;
 const height = window.innerHeight * 1.5;
 export default {
   name: "IsoDrawGrid",
-  props: ["radiusRatio", "grabber", "pickedColor"],
+  props: ["radiusRatio", "grabber", "pickedColor", "gridline"],
   computed: {
     recieveRadiusRatio() {
       return { ratio: this.radiusRatio * 0.01 };
     },
+    // visibleGrid() {
+    //   return {"yellow"};
+    // }
+    visibleGrid: function() {
+      if (this.gridline) {
+        return "yellow";
+      } else {
+        return false;
+      }
+    }
   },
   data() {
     return {
@@ -48,15 +58,15 @@ export default {
       configKonva: {
         width: width,
         height: height,
-        strokeWidth: 4,
-      },
+        strokeWidth: 4
+      }
     };
   },
 
   methods: {
     handleClick(e) {
       const clickItemId = e.target.id();
-      const item = this.list.find((i) => i.id === clickItemId);
+      const item = this.list.find(i => i.id === clickItemId);
       item.fill = this.pickedColor;
       // if (item.fill == "blue") {
       //   item.fill = "red";
@@ -65,28 +75,28 @@ export default {
       // } else if (item.fill == "yellow") {
       //   item.fill = "blue";
       // }
-    },
+    }
   },
 
   mounted() {
-    for (let hexRow = 0; hexRow < 30; hexRow++) {
-      for (let n = 0; n < 30; n++) {
+    for (let hexRow = 0; hexRow < 50; hexRow++) {
+      for (let n = 0; n < 50; n++) {
         this.list.push({
           id: Math.round(Math.random() * 10000000).toString(),
           x: n * 170 + (hexRow % 2) * 85,
           fill: "blue",
-          y: 150 * hexRow,
+          y: 150 * hexRow
         });
         this.list.push({
           id: Math.round(Math.random() * 10000000).toString(),
           rotation: 180,
           x: n * 170 + (hexRow % 2) * 85,
           fill: "blue",
-          y: 150 * hexRow + 95,
+          y: 150 * hexRow + 95
         });
       }
     }
-  },
+  }
 };
 </script>
 

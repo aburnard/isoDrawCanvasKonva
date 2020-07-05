@@ -3,16 +3,13 @@
     <section>
       <div class="columns is-mobile">
         <div class="column is-mobile">
-          <b-numberinput
-            controls-position="compact"
-            v-model="ratio"
-            step="5"
-            min="15"
-            max="80"
-          ></b-numberinput>
+          <b-numberinput controls-position="compact" v-model="ratio" step="5" min="1" max="80"></b-numberinput>
         </div>
         <div class="column is-mobile">
           <b-switch v-model="grabber">Pin Canvas</b-switch>
+        </div>
+        <div class="column is-mobile">
+          <b-switch v-model="gridline">Visible Grid</b-switch>
         </div>
         <div class="column is-mobile">
           <div>
@@ -25,6 +22,7 @@
         :radiusRatio="ratio"
         :grabber="grabber"
         :pickedColor="color"
+        :gridline="gridline"
       ></IsoDrawGrid>
     </section>
   </div>
@@ -42,16 +40,16 @@ export default {
       ratio: 30,
       grabber: true,
       isActive: true,
-
+      gridline: true,
       imageData: "",
-      color: "#1CA085",
+      color: "#1CA085"
     };
   },
 
   components: {
     IsoDrawGrid,
-    VSwatches,
-  },
+    VSwatches
+  }
 };
 </script>
 
