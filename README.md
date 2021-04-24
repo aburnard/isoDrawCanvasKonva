@@ -1,5 +1,6 @@
-# modalplex
-
+# IsoDraw Using Konva and Canvas
+Triangular Pixel editor implemented in Vue Konva and Canvas
+Think Isometric graph paper.
 ## Project setup
 ```
 npm install
